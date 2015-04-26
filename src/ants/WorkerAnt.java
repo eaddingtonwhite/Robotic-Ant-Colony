@@ -2,16 +2,40 @@ package ants;
 
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
-import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
 public class WorkerAnt extends AntBaseClass {
 
+	Thread colorSensor;
+	
+	/**
+	 * Creates an instance of a worker ant and starts its color sensor
+	 */
+	public WorkerAnt(){        
+		//Create color sensor thread
+		colorSensor = new Thread(new LookForColor());
+        //Start color sensor thread
+        colorSensor.start();
+	}
+	
 	/**
 	 * Will spiral out from origin in the most efficient search pattern possible
 	 */
 	public void search() {
-
+		//Starting move forward amount
+		int baselength = 500;
+		int i = 1;
+		int count = 0;
+		while(true){
+			//Move forward
+			moveForward(baselength * i);
+			//Turn
+			turnRight();
+			count++;
+			if(count % 2 == 0){					
+				i *= 2;					
+			}
+		}
 	}
 
 	/**

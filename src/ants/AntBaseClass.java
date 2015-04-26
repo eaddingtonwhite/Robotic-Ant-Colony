@@ -31,19 +31,19 @@ public class AntBaseClass {
 	}
 
 	/**
-	 * Sets ant moving forward
+	 * Moves ant forward moveAmmount
 	 */
-	public void moveForward() {
-		Motor.B.forward();
-		Motor.C.forward();
+	public void moveForward(int moveAmmount) {
+		Motor.B.rotate(moveAmmount, true);
+		Motor.C.rotate(moveAmmount, true);
 	}
 	
 	/**
-	 * Sets ant moving backwards
+	 * Moves and backwards moveAmmount
 	 */
-	public void moveBackward() {
-		Motor.B.backward();
-		Motor.C.backward();
+	public void moveBackward(int moveAmmount) {
+		Motor.B.rotate(-moveAmmount, true);
+		Motor.C.rotate(-moveAmmount, true);
 	}
 	
 	/**
