@@ -1,5 +1,7 @@
 package ants;
 
+import lejos.hardware.port.SensorPort;
+
 public class WorkerAnt extends AntBaseClass {
 
 	/**
@@ -23,4 +25,13 @@ public class WorkerAnt extends AntBaseClass {
 
 	}
 
+}
+
+
+class LookForColor implements Runnable {
+	public void run(){
+		//Set up color sensor
+		ColorSensor cs = new ColorSensor(SensorPort.S3);
+		
+	}
 }
