@@ -1,27 +1,70 @@
 package ants;
 
+import java.util.UUID;
+
+import lejos.hardware.motor.Motor;
+
 public class AntBaseClass {
-String mode;
-int id;
-//the UML says to add navigate and vote here. This can be done when We've implemented
-//those classes.
+	
+	//This ants unique id
+	private UUID id;
 
-public static void identify(){
+	/**
+	 * Creates a new ant object with a random UUID identifier
+	 */
+	public AntBaseClass(){
+		
+		//Generates this ants id
+		this.id = UUID.randomUUID();
+		
+        // Set Motor speed
+        Motor.B.setSpeed(600);
+        Motor.C.setSpeed(600);
+	}
 	
-}
+	/**
+	 * This will allow another ant to poll this ant and it will
+	 * send back its id number.
+	 */
+	public UUID identify() {
+		return this.id;
+	}
 
-//Directions 
-//The will be easier to fill in once we have a robot in front of me to check ports on.
-public static void moveForward(){
+	/**
+	 * Sets ant moving forward
+	 */
+	public void moveForward() {
+		Motor.B.forward();
+		Motor.C.forward();
+	}
 	
-}
-public static void moveBackward(){
+	/**
+	 * Sets ant moving backwards
+	 */
+	public void moveBackward() {
+		Motor.B.backward();
+		Motor.C.backward();
+	}
 	
-}
-public static void turnLeft(){
+	/**
+	 * Turns ant left. Locking
+	 */
+	public void turnLeft() {
+		Motor.C.rotate(540);
+	}
 	
-}
-public static void turnRight(){
+	/**
+	 * Turns ant right. Locking
+	 */
+	public void turnRight() {
+		Motor.B.rotate(540);
+	}
 	
-}
+	/**
+	 * Stops the ant in its tracks
+	 */
+	public void stop(){
+		Motor.B.stop();
+		Motor.C.stop();
+	}
 }
