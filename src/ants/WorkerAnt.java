@@ -1,17 +1,26 @@
 package ants;
 
-public class WorkerAnt extends AntBaseClass{
-	
+public class WorkerAnt extends AntBaseClass {
+
+	/**
+	 * Will spiral out from origin in the most efficient search pattern possible
+	 */
 	public void search() {
 
 	}
 
-	public void followTrail(){
-		
+	/**
+	 * Will follow a found color trail to a POI
+	 */
+	public void followTrail() {
+
 	}
-	
-	public void makeTrail(){
-		
+
+	/**
+	 * Will draw a color trail back home to POI for other ants to follow
+	 */
+	public void makeTrail() {
+
 	}
 
 }
