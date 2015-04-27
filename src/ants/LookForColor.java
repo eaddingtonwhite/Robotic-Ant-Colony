@@ -14,9 +14,9 @@ public class LookForColor extends Thread {
 
 	public void run() {
 
-		// Set up color sensor
-		@SuppressWarnings("resource")
 		// Ignore scanner not closed warning
+		@SuppressWarnings("resource")
+		// Set up color sensor
 		EV3ColorSensor cs = new EV3ColorSensor(SensorPort.S3);
 
 		// Start event loop

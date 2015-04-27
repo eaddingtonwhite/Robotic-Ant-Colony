@@ -18,6 +18,7 @@ public class NestFinderAnt extends WorkerAnt {
 	}
 
 	public void searchForNest() {
+
 		// Starting move forward amount
 		int baselength = 500;
 		int i = 1;
@@ -49,7 +50,6 @@ public class NestFinderAnt extends WorkerAnt {
 	 * TODO Implement this! For starters evaluate off of ambient light? EAW
 	 */
 	private void evauluateNestSite() {
-
 		// If nest good votePass()
 		// Else voteFail()
 
@@ -59,7 +59,7 @@ public class NestFinderAnt extends WorkerAnt {
 	 * Ant communicates possible nest location to other ants
 	 */
 	public void sendAntSiteLocation() {
-
+		// TODO We will probably use the navigator class here?
 	}
 
 	/**
