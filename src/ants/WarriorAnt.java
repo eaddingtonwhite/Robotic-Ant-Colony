@@ -8,32 +8,39 @@ public class WarriorAnt extends AntBaseClass {
 	/**
 	 * Vigilantly Patrols ands checks for enemies.
 	 */
-	public static void patrol(){
+	public void patrol(){
 		Motor.B.setSpeed(300);
 		Motor.C.setSpeed(300);
-		//this depends on how moveForward() is implemented.
-		moveForward();
+		//TODO Lucas how far forward do you want this to move
+//		moveForward();
 		turnRight();
 		identifyThreat();
 		turnLeft();
 		turnLeft();
 		identifyThreat();
 		turnLeft();
-		moveForward();	
+		//TODO Lucas how far forward do you want this to move
+//		moveForward();	
 	}
 	
 	/**
 	 * Calls wiggle() if the identity check fails.
 	 */
-	public static void identifyThreat(){
-		if(!identify())
-			wiggle();
-		}
+	public void identifyThreat(){
+		//TODO Dont worry about this yet Lucas im not sure how this will work yet
+		//Just hard code in good guy or bad guy for debugging EAW
+//		if(!identify())
+//			warDance();
+//		}
+	}
 	
 	/**
-	 * Wiggles back and forth.
+	 * Ant begins a ferocious display that will definitely scare off any bad guys O_O
+	 * 
+	 * TODO Check out inherited methods you can define how much to move forward instead
+	 * instead of using delays here. EAW
 	 */
-	public static void wiggle(){
+	public void warDance(){
 		Motor.B.setSpeed(300);
 		Motor.C.setSpeed(300);
 		for(int i = 0;i<3;i++){

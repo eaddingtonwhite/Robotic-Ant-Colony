@@ -5,6 +5,13 @@ public class NestFinderAnt extends WorkerAnt {
 	int influence;
 	
 	/**
+	 * Creates a nest finder Ant 
+	 */
+	public NestFinderAnt(){
+		super();
+	}
+	
+	/**
 	 * Ant communicates possible nest location to other ants
 	 */
 	public void sendAntSiteLocation() {
