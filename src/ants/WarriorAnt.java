@@ -6,7 +6,7 @@ import lejos.hardware.motor.Motor;
 import lejos.utility.Delay;
 
 public class WarriorAnt extends AntBaseClass {
-
+	// TODO should this extend WorkerAnt, since I'm supposed to put navigation stuff there? 
 	// TODO Get all friendly ant UUID's poll all ants at beginning of Demo
 	//  **** Ill do this deals with wireless connect EAW ****
 	UUID[] friendlyAnts = new UUID[3];
