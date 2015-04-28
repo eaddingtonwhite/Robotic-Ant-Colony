@@ -8,6 +8,7 @@ public class FoodFinderAnt extends WorkerAnt {
 		super();
 	}
 
+	//TODO make this work in a way similar to find nest. 
 	public void searchForFood() {
 		// Starting move forward amount
 		int baselength = 500;

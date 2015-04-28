@@ -1,15 +1,11 @@
 package ants;
 
-import java.util.UUID;
-
 import lejos.hardware.motor.Motor;
 import lejos.utility.Delay;
 
 public class WarriorAnt extends AntBaseClass {
-	// TODO should this extend WorkerAnt, since I'm supposed to put navigation stuff there? 
-	// TODO Get all friendly ant UUID's poll all ants at beginning of Demo
-	//  **** Ill do this deals with wireless connect EAW ****
-	UUID[] friendlyAnts = new UUID[3];
+
+	//TODO implement recognition with color.
 
 	/**
 	 * Vigilantly Patrols ands checks for enemies.
@@ -30,10 +26,10 @@ public class WarriorAnt extends AntBaseClass {
 	/**
 	 * Calls warDance() if the identity check fails.
 	 * 
-	 * @param For
-	 *            testing. Controls the reaction.
+	 * @param good
+	 *           For testing. Controls the reaction.
 	 */
-	// TODO Make this work with UUID.
+	// TODO Make this work with Color.
 	public void identifyThreat(boolean good) {
 		if (!good)
 			warDance();
@@ -42,12 +38,6 @@ public class WarriorAnt extends AntBaseClass {
 	/**
 	 * Ant begins a ferocious display that will definitely scare off any bad
 	 * guys O_O
-	 */
-	/*
-	 * TODO If the delays are problematic I can create some methods in Base that
-	 * turn only one wheel a certain amount. For now, I don't want the ants
-	 * actually be in a different spot than when the dance started so I can't
-	 * use the current methods as they will move both wheels.
 	 */
 	public void warDance() {
 

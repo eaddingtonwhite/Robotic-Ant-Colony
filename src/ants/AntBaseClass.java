@@ -1,6 +1,5 @@
 package ants;
 
-import java.util.UUID;
 import lejos.hardware.motor.Motor;
 import lejos.robotics.navigation.DifferentialPilot;
 
@@ -10,29 +9,21 @@ public class AntBaseClass {
 	//establish a pilot
 	DifferentialPilot pilot;
 	
-	// This ants unique id
-	private UUID id;
 
 	/**
-	 * Creates a new ant object with a random UUID identifier
+	 * Creates a new ant object.
 	 */
 	public AntBaseClass() {
-		
-		
-		// Generates this ants id
-		this.id = UUID.randomUUID();
-
 		// Set Motor speed
 		pilot.setTravelSpeed(400);
 	}
 
 	/**
-	 * This will allow another ant to poll this ant and it will send back its id
-	 * number.
+	 * TODO This will allow ant to check color of recognized ant.
 	 */
-	public UUID identify() {
-		return this.id;
-	}
+	//public UUID identify() {
+	//	return this.id;
+	//}
 
 	/**
 	 * Moves ant forward moveAmmount

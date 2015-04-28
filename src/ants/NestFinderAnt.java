@@ -51,21 +51,6 @@ public class NestFinderAnt extends WorkerAnt {
 			voteFail();
 	}
 
-	/**
-	 * Ant communicates possible nest location to other ants
-	 */
-	public void sendAntSiteLocation() {
-		// TODO We will probably use the navigator class here?
-	}
-
-	/**
-	 * Ant asks other ants to send their rating of the nesting site
-	 */
-	public void initiateVote() {
-		sendAntSiteLocation();
-	}
-
-	// TODO Are we going to use a rating system or yes and no votes?? EAW
 
 	/**
 	 * Ant votes that proposed location is sufficient
@@ -81,11 +66,4 @@ public class NestFinderAnt extends WorkerAnt {
 
 	}
 
-	/**
-	 * Ants vote on the suitability of the nest location proposed by
-	 * NestFinderAnt
-	 */
-	public void sendRating() {
-
-	}
 }
