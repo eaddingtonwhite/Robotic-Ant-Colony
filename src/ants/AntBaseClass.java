@@ -1,70 +1,64 @@
 package ants;
 
-import java.util.UUID;
-
 import lejos.hardware.motor.Motor;
+import lejos.robotics.navigation.DifferentialPilot;
+
 
 public class AntBaseClass {
 
-	// This ants unique id
-	private UUID id;
+	//establish a pilot
+	DifferentialPilot pilot;
+	
 
 	/**
-	 * Creates a new ant object with a random UUID identifier
+	 * Creates a new ant object.
 	 */
 	public AntBaseClass() {
-
-		// Generates this ants id
-		this.id = UUID.randomUUID();
-
 		// Set Motor speed
-		Motor.B.setSpeed(600);
-		Motor.C.setSpeed(600);
+		pilot.setTravelSpeed(400);
 	}
 
 	/**
-	 * This will allow another ant to poll this ant and it will send back its id
-	 * number.
+	 * TODO This will allow ant to check color of recognized ant.
 	 */
-	public UUID identify() {
-		return this.id;
-	}
+	//public UUID identify() {
+	//	return this.id;
+	//}
 
 	/**
 	 * Moves ant forward moveAmmount
 	 */
-	public void moveForward(int moveAmmount) {
-		Motor.B.rotate(moveAmmount, true);
-		Motor.C.rotate(moveAmmount, true);
+	public void moveForward(int moveAmount) {
+		pilot.forward();
+		pilot.travel(moveAmount, true);
 	}
 
 	/**
 	 * Moves and backwards moveAmmount
 	 */
-	public void moveBackward(int moveAmmount) {
-		Motor.B.rotate(-moveAmmount, true);
-		Motor.C.rotate(-moveAmmount, true);
+	public void moveBackward(int moveAmount) {
+		pilot.backward();
+		pilot.travel(moveAmount, true);
 	}
 
 	/**
 	 * Turns ant left. Locking
 	 */
 	public void turnLeft() {
-		Motor.C.rotate(540);
+		pilot.rotate(360);
 	}
 
 	/**
 	 * Turns ant right. Locking
 	 */
 	public void turnRight() {
-		Motor.B.rotate(540);
+		pilot.rotate(-360);
 	}
 
 	/**
 	 * Stops the ant in its tracks
 	 */
 	public void stop() {
-		Motor.B.stop();
-		Motor.C.stop();
+		pilot.stop();
 	}
 }
