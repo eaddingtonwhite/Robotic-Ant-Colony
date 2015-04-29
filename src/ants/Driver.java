@@ -1,5 +1,7 @@
 package ants;
 
+import lejos.utility.Delay;
+
 
 public class Driver {
 
@@ -16,7 +18,7 @@ public class Driver {
 	 */
 	public static void main(String[] args) {
 
-		int currentMode = WARRIOR_DEMO; // Change this for different demos
+		int currentMode = NEST_DEMO; // Change this for different demos
 
 		if (currentMode == WARRIOR_DEMO) {
 			warriorDemo();
@@ -61,15 +63,32 @@ public class Driver {
 				//Start patrolling again
 				warrior.startPatrol();
 			}
+
+			//Delay half a second we don't need to check constantly
+			Delay.msDelay(500);
 		}while(true);
-		
 	}
 
 	/**
 	 * Executes the demo showing how ants find a new nest
 	 */
 	private static void nestDemo() {
-		// TODO Implement this
+		
+		//Create nest finder ant
+		NestFinderAnt searcherAnt = new NestFinderAnt();
+		
+		//Start it searching
+		searcherAnt.startSearchPath();
+		
+		//Start event loop
+		do{
+			//Check if found a good nesting site
+			searcherAnt.evauluateNestSite(searcherAnt.getCurrentColor());
+			
+			//Delay half a second we don't need to check constantly
+			Delay.msDelay(500);
+		}while(true);
+		
 	}
 
 }

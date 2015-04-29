@@ -1,5 +1,8 @@
 package ants;
 
+import lejos.hardware.Sound;
+import lejos.utility.Delay;
+
 public class NestFinderAnt extends WorkerAnt {
 
 	/**
@@ -17,53 +20,64 @@ public class NestFinderAnt extends WorkerAnt {
 		super();
 	}
 
-	/**
-	 * implemented as going in a straight line until we get navigator paths working.
-	 */
-	public void searchForNest() {
-		while(!(getCurrentColor().equals(NEST_COLOR))){
-			 moveForward(1000);
+	public void startSearchPath() {
+
+		// Initialize Search Path
+		float currentX = 0;
+		float currentY = 0;
+		float baseMoveAmmount = 20;
+		int currentSide = 0;
+
+		for (int i = 0; i < 1000; i++) {
+
+			// Check if we should increase base move amount
+			if (i % 2 == 0) {
+				baseMoveAmmount += 10;
 			}
-		//makes sure reading is correct.
-		evauluateNestSite();
+
+			// Figure out location of next way point
+			switch (currentSide) {
+			case 0:
+				currentX += baseMoveAmmount;
+				break;
+			case 1:
+				currentY += baseMoveAmmount;
+				break;
+			case 2:
+				currentX -= baseMoveAmmount;
+				break;
+			case 3:
+				currentY -= baseMoveAmmount;
+				break;
+			}
+
+			// Add calculated waypoint
+			this.addWayPoint(currentX, currentY);
+
+			// increment side count
+			currentSide++;
+
+			// Check if we should reset current side
+			if (currentSide > 3) {
+				currentSide = 0;
+			}
 		}
 
-		/* We found a nest!! O_O */
-
-		// Notify other ants to come vote
-		//initiateVote();
-
-		// Start this ants evaluation of nest
-		//evauluateNestSite();
-
-		// TODO Does ant who initially found nest make final decision or should
-		// Queen? EAW
-	
-
-	/**
-	 * Evaluates nest potential based on color. 
-	 */
-	private void evauluateNestSite() {
-
-		if(getCurrentColor().equals(NEST_COLOR))
-			votePass();
-		else
-			voteFail();
-	}
-
-
-	/**
-	 * Ant votes that proposed location is sufficient
-	 */
-	public void votePass() {
-
+		// Start Searching
+		this.startNavigation();
 	}
 
 	/**
-	 * Ant votes that proposed location is insufficient
+	 * Will evaluate current location and see if it is suitable for nesting
 	 */
-	public void voteFail() {
-
+	public void evauluateNestSite(String currentColor) {
+		if (currentColor.equals(NEST_COLOR)) {
+			System.out.println("Found a good nesting site!");
+			for(int i = 0; i < 10; i++){				
+				Sound.beep();
+			}
+			Delay.msDelay(2000);
+			System.exit(0);
+		}
 	}
-
 }
