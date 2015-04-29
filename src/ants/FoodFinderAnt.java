@@ -25,11 +25,20 @@ public class FoodFinderAnt extends WorkerAnt {
 			// Stop navigation
 			this.stopNavigation();
 
-			// Notify audience that it found food and exit program
-			System.out.println("Found Food!");
+			// Notify audience that it found food
 			for (int i = 0; i < 10; i++) {
+				//Beep
 				Sound.setVolume(10);
 				Sound.beep();
+				
+				//Ant returns to nest
+				goHome();
+				
+				//Spin wait till ant gets home
+				while(isAntStillNavigating()){}
+				
+				//Exit program
+				System.exit(0);
 			}
 			Delay.msDelay(2000);
 			System.exit(0);
