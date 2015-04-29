@@ -15,6 +15,7 @@ public class WarriorAnt extends AntBaseClass {
 	private void intilizePatrolPath() {
 		this.addWayPoint(50, 0);
 		this.addWayPoint(-50, 0);
+		this.addWayPoint(0, 0);
 	}
 
 	/**

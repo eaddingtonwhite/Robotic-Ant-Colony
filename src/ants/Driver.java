@@ -1,12 +1,5 @@
 package ants;
 
-import java.io.IOException;
-
-import lejos.robotics.RegulatedMotor;
-import lejos.robotics.navigation.DifferentialPilot;
-import lejos.robotics.navigation.Navigator;
-import lejos.robotics.navigation.Waypoint;
-import lejos.utility.PilotProps;
 
 public class Driver {
 
@@ -23,7 +16,7 @@ public class Driver {
 	 */
 	public static void main(String[] args) {
 
-		int currentMode = FOOD_DEMO; // Change this for different demos
+		int currentMode = WARRIOR_DEMO; // Change this for different demos
 
 		if (currentMode == WARRIOR_DEMO) {
 			warriorDemo();
@@ -41,50 +34,35 @@ public class Driver {
 	 * Executes the demo showing how ants collect food
 	 */
 	private static void foodDemo() {
-		
-		//Create Configuration object for pilot
-        PilotProps pp = new PilotProps();
-        try {
-        	//Load 
-            pp.loadPersistentValues();
-        } catch (IOException ioe) {
-            System.exit(CONFIG_LOAD_FAIL);
-        }
-        
-        //Set configuration values for pilot try and sense otherwise fall back to defaults
-        
-        //Wheel diameter
-        float wheelDiameter = Float.parseFloat(pp.getProperty(PilotProps.KEY_WHEELDIAMETER, "6"));;
-        //Distance between wheels
-        float trackWidth = Float.parseFloat(pp.getProperty(PilotProps.KEY_TRACKWIDTH, "18.0"));
-        //Set motor preset
-        RegulatedMotor leftMotor = PilotProps.getMotor(pp.getProperty(PilotProps.KEY_LEFTMOTOR, "B"));
-        RegulatedMotor rightMotor = PilotProps.getMotor(pp.getProperty(PilotProps.KEY_RIGHTMOTOR, "C"));
-        //Set true if we flip motors around 
-        boolean reverse = Boolean.parseBoolean(pp.getProperty(PilotProps.KEY_REVERSE,"false"));
-         
-        //Create pilot object
-        final DifferentialPilot robot = new DifferentialPilot(wheelDiameter,trackWidth,leftMotor,rightMotor,reverse);
-        //Create Navigator class pass in pilot 
-        final Navigator navigator = new Navigator(robot);
-
-        //Add some way points for testing
-		navigator.addWaypoint(new Waypoint(30, 0));
-		navigator.addWaypoint(new Waypoint(30, 40));
-		
-		//Start along path WARNING non blocking
-		navigator.followPath();
-		
-		do{
-			//Spin wait for now 
-		}while(true);
+		// TODO Implement this
 	}
 
 	/**
 	 * Executes the demo showing how ants defend their nest
 	 */
 	private static void warriorDemo() {
-		// TODO Implement this
+		
+		//Create Warrior ant
+		WarriorAnt warrior = new WarriorAnt();
+		
+		//Initialize warrior position outside of nest
+		warrior.navigateToPoint(0, 50);
+		
+		//Start event loop
+		do{
+			//Check if warrior is done with patrol
+			if(!warrior.isAntStillNavigating()){
+				//Clear path
+				warrior.clearCurrentPath();
+				
+				//Commence war dance
+				warrior.warDance();
+				
+				//Start patrolling again
+				warrior.startPatrol();
+			}
+		}while(true);
+		
 	}
 
 	/**
