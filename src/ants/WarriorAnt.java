@@ -5,6 +5,10 @@ import lejos.utility.Delay;
 
 public class WarriorAnt extends AntBaseClass {
 
+	public WarriorAnt(){
+		super();
+	}
+	
 	/**
 	 * Resets this warrior ant patrol path
 	 */
