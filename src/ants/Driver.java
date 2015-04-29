@@ -2,7 +2,6 @@ package ants;
 
 import lejos.utility.Delay;
 
-
 public class Driver {
 
 	private static final int WARRIOR_DEMO = 0;
@@ -10,15 +9,15 @@ public class Driver {
 	private static final int NEST_DEMO = 2;
 
 	private static final int BAD_MODE_STATUS = 2;
-	private static final int CONFIG_LOAD_FAIL = 3;
 
 	/**
 	 * Will dictate what demo we are currently running
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
-		int currentMode = NEST_DEMO; // Change this for different demos
+		int currentMode = FOOD_DEMO; // Change this for different demos
 
 		if (currentMode == WARRIOR_DEMO) {
 			warriorDemo();
@@ -36,59 +35,75 @@ public class Driver {
 	 * Executes the demo showing how ants collect food
 	 */
 	private static void foodDemo() {
-		// TODO Implement this
-	}
 
-	/**
-	 * Executes the demo showing how ants defend their nest
-	 */
-	private static void warriorDemo() {
-		
-		//Create Warrior ant
-		WarriorAnt warrior = new WarriorAnt();
-		
-		//Initialize warrior position outside of nest
-		warrior.navigateToPoint(0, 50);
-		
-		//Start event loop
-		do{
-			//Check if warrior is done with patrol
-			if(!warrior.isAntStillNavigating()){
-				//Clear path
-				warrior.clearCurrentPath();
-				
-				//Commence war dance
-				warrior.warDance();
-				
-				//Start patrolling again
-				warrior.startPatrol();
-			}
+		// Create food finder ant
+		FoodFinderAnt foodFinder = new FoodFinderAnt();
 
-			//Delay half a second we don't need to check constantly
+		// Start it searching
+		foodFinder.startSearchPath();
+
+		// Start event loop
+		do {
+			// Check if found a good nesting site
+			System.out.println(foodFinder.getCurrentColor());
+			foodFinder.evauluateSiteForFood(foodFinder.getCurrentColor());
+
+			// Delay half a second we don't need to check constantly
 			Delay.msDelay(500);
-		}while(true);
+		} while (true);
 	}
 
 	/**
 	 * Executes the demo showing how ants find a new nest
 	 */
 	private static void nestDemo() {
-		
-		//Create nest finder ant
+
+		// Create nest finder ant
 		NestFinderAnt searcherAnt = new NestFinderAnt();
-		
-		//Start it searching
+
+		// Start it searching
 		searcherAnt.startSearchPath();
-		
-		//Start event loop
-		do{
-			//Check if found a good nesting site
+
+		// Start event loop
+		do {
+			// Check if found a good nesting site
+			System.out.println(searcherAnt.getCurrentColor());
 			searcherAnt.evauluateNestSite(searcherAnt.getCurrentColor());
-			
-			//Delay half a second we don't need to check constantly
+
+			// Delay half a second we don't need to check constantly
 			Delay.msDelay(500);
-		}while(true);
-		
+		} while (true);
+
+	}
+
+	/**
+	 * Executes the demo showing how ants defend their nest
+	 */
+	private static void warriorDemo() {
+
+		// Create Warrior ant
+		WarriorAnt warrior = new WarriorAnt();
+
+		// Initialize warrior position outside of nest
+		warrior.navigateToPoint(0, 50);
+
+		// Start event loop
+		do {
+			// Check if warrior is done with patrol
+			if (!warrior.isAntStillNavigating()) {
+				// Clear path
+				warrior.clearCurrentPath();
+
+				// Commence war dance
+				warrior.warDance();
+
+				// Start patrolling again
+				warrior.startPatrol();
+			}
+
+			// Delay half a second we don't need to check constantly
+			Delay.msDelay(500);
+		} while (true);
 	}
 
 }

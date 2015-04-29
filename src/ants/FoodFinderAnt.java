@@ -1,32 +1,45 @@
 package ants;
 
+import lejos.hardware.Sound;
+import lejos.utility.Delay;
+
 public class FoodFinderAnt extends WorkerAnt {
 
-	private final static String FOOD_COLOR = "Red";
+	/** What color this robot considers valid food **/
+	private final static String FOOD_COLOR = "Blue";
 
+	/**
+	 * Creates a nest finder Ant
+	 */
 	public FoodFinderAnt() {
 		super();
 	}
 
-	//TODO make this work in a way similar to find nest. 
-	public void searchForFood() {
-		// Starting move forward amount
-		int baselength = 500;
-		int i = 1;
-		int count = 0;
-		while (getCurrentColor() != FOOD_COLOR) {
-			// Move forward
-			moveForward(baselength * i);
-			// Turn
-			turnRight();
-			count++;
-			if (count % 2 == 0) {
-				i *= 2;
-			}
-		}
+	/**
+	 * Will evaluate current location and see if it is edible
+	 */
+	public void evauluateSiteForFood(String currentColor) {
 
-		// TODO Jessie What do we do once we have found food!?!? eat it..?
-		// Return Home? Die and go to heaven? Do victory dance?
+		// Check if on top of food
+		if (currentColor.equals(FOOD_COLOR)) {
+			// Stop navigation
+			this.stopNavigation();
+
+			// Notify audience that it found food and exit program
+			System.out.println("Found Food!");
+			for (int i = 0; i < 10; i++) {
+				Sound.setVolume(10);
+				Sound.beep();
+			}
+			Delay.msDelay(2000);
+			System.exit(0);
+		}
 	}
 
+	/**
+	 * Will make this food finder ant return home
+	 */
+	public void goHome() {
+		this.navigateToPoint(0, 0);
+	}
 }

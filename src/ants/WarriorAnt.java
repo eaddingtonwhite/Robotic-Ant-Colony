@@ -5,10 +5,10 @@ import lejos.utility.Delay;
 
 public class WarriorAnt extends AntBaseClass {
 
-	public WarriorAnt(){
+	public WarriorAnt() {
 		super();
 	}
-	
+
 	/**
 	 * Resets this warrior ant patrol path
 	 */
@@ -21,21 +21,21 @@ public class WarriorAnt extends AntBaseClass {
 	/**
 	 * Commences this warriors patrol path
 	 */
-	public void startPatrol(){
+	public void startPatrol() {
 		this.intilizePatrolPath();
 		this.startNavigation();
 	}
-	
+
 	/**
 	 * Ant begins a ferocious display that will definitely scare off any bad
 	 * guys O_O
 	 */
 	public void warDance() {
-		//Stop Navigation and clear path
+		// Stop Navigation and clear path
 		this.stopNavigation();
 		this.clearCurrentPath();
-		
-		//Commence the dance
+
+		// Commence the dance
 		Motor.B.setSpeed(300);
 		Motor.C.setSpeed(300);
 		for (int i = 0; i < 3; i++) {

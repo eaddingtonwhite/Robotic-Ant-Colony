@@ -118,21 +118,25 @@ public class AntBaseClass {
 
 	/**
 	 * Returns whether or not this ant is still on its navigation path
+	 * 
 	 * @return
 	 */
-	public boolean isAntStillNavigating(){
+	public boolean isAntStillNavigating() {
 		return this.navigator.isMoving();
 	}
-	
+
 	/**
-	 * Tells this ant to navigate to specific point 
-	 * @param x vertices of go to point
-	 * @param y vertices of go to point
+	 * Tells this ant to navigate to specific point
+	 * 
+	 * @param x
+	 *            vertices of go to point
+	 * @param y
+	 *            vertices of go to point
 	 */
-	public void navigateToPoint(float x, float y){
+	public void navigateToPoint(float x, float y) {
 		this.navigator.goTo(x, y);
 	}
-	
+
 	/** BASIC MOVEMENT **/
 
 	/**
