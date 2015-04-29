@@ -5,42 +5,32 @@ import lejos.utility.Delay;
 
 public class WarriorAnt extends AntBaseClass {
 
-	//TODO implement recognition with color.
-
 	/**
-	 * Vigilantly Patrols ands checks for enemies.
+	 * Resets this warrior ant patrol path
 	 */
-	public void patrol() {
-		// TODO I need to figure out how far one rotation will get me. Inputting
-		// guess for now.
-		moveForward(5000);
-		turnRight();
-		identifyThreat(true);
-		turnLeft();
-		turnLeft();
-		identifyThreat(true);
-		turnLeft();
-		moveForward(5000);
+	private void intilizePatrolPath() {
+		this.addWayPoint(50, 0);
+		this.addWayPoint(-50, 0);
 	}
 
 	/**
-	 * Calls warDance() if the identity check fails.
-	 * 
-	 * @param good
-	 *           For testing. Controls the reaction.
+	 * Commences this warriors patrol path
 	 */
-	// TODO Make this work with Color.
-	public void identifyThreat(boolean good) {
-		if (!good)
-			warDance();
+	public void startPatrol(){
+		this.intilizePatrolPath();
+		this.startNavigation();
 	}
-
+	
 	/**
 	 * Ant begins a ferocious display that will definitely scare off any bad
 	 * guys O_O
 	 */
 	public void warDance() {
-
+		//Stop Navigation and clear path
+		this.stopNavigation();
+		this.clearCurrentPath();
+		
+		//Commence the dance
 		Motor.B.setSpeed(300);
 		Motor.C.setSpeed(300);
 		for (int i = 0; i < 3; i++) {
@@ -54,8 +44,8 @@ public class WarriorAnt extends AntBaseClass {
 			Motor.C.backward();
 		}
 		// sets speed back to default.
-		Motor.B.setSpeed(600);
-		Motor.C.setSpeed(600);
+		Motor.B.setSpeed(500);
+		Motor.C.setSpeed(500);
 	}
 
 }
